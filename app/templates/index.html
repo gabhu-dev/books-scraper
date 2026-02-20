@@ -2,6 +2,7 @@
 {% block contenido %}
 <div class="flex">
     <aside class="text-sm p-4">
+        <i data-lucide="book"></i>
         <h4 class="font-medium mb-4">Categorías</h4>
         <ul>
             {% for category in categories %}
@@ -14,7 +15,7 @@
         <p>{{ loading }}</p>
         <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
             {% for book in books %}
-            <a class="p-4 text-center transition-all hover:border hover:border-gray-200 hover:rounded hover:shadow-sm" href="{{ book.url_detail }}">
+            <a class="p-4 text-center transition-all border border-white hover:border-gray-200 hover:rounded hover:shadow-sm" href="{{ book.url_detail }}">
                 <img class="m-auto mb-2" src="{{ book.image_url }}" alt="{{ book.title }}" class="mb-4">
                 <h3 class="font-medium mb-2">{{ book.title }}</h3>
                 <p class="text-xl font-semibold text-gray-600 mb-2">{{ book.price }}</p>
