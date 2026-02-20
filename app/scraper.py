@@ -1,7 +1,8 @@
 import requests
 from bs4 import BeautifulSoup
 
-BASE_URL = "https://books.toscrape.com/index.html"
+BASE_URL = "https://books.toscrape.com/"
+BASE_URL_INDEX = BASE_URL + "index.html"
 
 RATING_MAP = {
     "One": 1, "Two": 2, "Three": 3, "Four": 4, "Five": 5
@@ -9,18 +10,18 @@ RATING_MAP = {
 
 def get_categories():
     print('Obteniendo categorías...')
-    response = requests.get(BASE_URL)
+    response = requests.get(BASE_URL_INDEX)
     soup = BeautifulSoup(response.text, "html.parser")
     categories = []
     for li in soup.select(".side_categories ul li a"):
         print(f'Categoría encontrada: {li.text.strip()}')
         categories.append({
             "category": li.text.strip(),
-            "url": BASE_URL + li["href"]
+            "url": BASE_URL_INDEX + li["href"]
         })
     return categories
 
-def get_books(url=BASE_URL, search=None):
+def get_books(url=BASE_URL_INDEX, search=None):
     print(f'Obteniendo libros desde: {url}')
     books = []
     while url:
@@ -30,6 +31,7 @@ def get_books(url=BASE_URL, search=None):
         for book in soup.select("article.product_pod"):
             title = book.h3.a["title"]
             price = book.select_one(".price_color").text.strip()
+            image_url = book.select_one('.image_container img')['src'].replace("../", "")
             rating_class = book.p["class"][1]
             rating = RATING_MAP.get(rating_class, 0)
             url_detail = book.h3.a["href"].replace("../", "")
@@ -41,6 +43,7 @@ def get_books(url=BASE_URL, search=None):
             books.append({
                 "title": title,
                 "price": price,
+                'image_url': BASE_URL + image_url,
                 "rating": rating,
                 "url_detail": url_detail
             })
@@ -57,7 +60,10 @@ def get_books(url=BASE_URL, search=None):
     # Filtrar por búsqueda si existe
     if search:
         books = [book for book in books if search.lower() in book["title"].lower()]
-
+    
+    # for book in books:
+    #     print(f'Libro encontrado: {book["title"]} - {book["price"]} - Rating: {book["rating"]} - image: {book["image_url"]}')
+    # print(f'Total libros obtenidos: {len(books)}')
     return books
 
 def get_details(url_detail):

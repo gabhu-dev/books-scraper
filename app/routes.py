@@ -1,11 +1,23 @@
 from flask import Blueprint, render_template, request
+from .scraper import get_categories, get_books
 
 main = Blueprint('main', __name__)
 
 @main.route('/')
 def index():
-    name = 'gabriela'
-    return render_template('index.html', name=name)
+    categories = get_categories()
+    loading = True
+    books = get_books()
+    loading = False
+    # book_test = [{
+    #     "title": "A Light in the Attic",
+    #     "price": "Â£51.77",
+    #     "image_url": "https://books.toscrape.com/media/cache/2c/da/2cdad67c44b002e7ead0cc35693c0e8b.jpg",
+    #     "rating": 3,
+    #     "url_detail": "catalogue/a-light-in-the-attic_1000/index.html"
+    # }]
+    # print('books', books)
+    return render_template('index.html', categories=categories, books=books, loading=loading)
 
 @main.route('/details')
 def details():

@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Books Scraper</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
-    <header>
-        <a href="/">📚 Books Scraper</a>
+    <header class="p-8">
+        <a href="/" class="text-xl font-medium">📚 Books Scraper</a>
     </header>
-    <div class="contenedor">
+    <div class="px-8">
         {% block contenido %}{% endblock %}
     </div>
 </body>
