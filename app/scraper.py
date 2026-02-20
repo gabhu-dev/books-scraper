@@ -30,7 +30,7 @@ def get_books(url=BASE_URL_INDEX, search=None):
 
         for book in soup.select("article.product_pod"):
             title = book.h3.a["title"]
-            price = book.select_one(".price_color").text.strip()
+            price = book.select_one(".price_color").text.replace("Â£", "$")
             image_url = book.select_one('.image_container img')['src'].replace("../", "")
             rating_class = book.p["class"][1]
             rating = RATING_MAP.get(rating_class, 0)
