@@ -2,18 +2,18 @@
 
 **Link de la demo:** [https://books-scraper.onrender.com/](https://books-scraper.onrender.com/)
 
-Este proyecto es una aplicación web desarrollada con **Flask** que realiza scraping en tiempo real del sitio [Books to Scrape](https://books.toscrape.com/), una plataforma diseñada específicamente para practicar técnicas de extracción de datos.
+Este proyecto es una aplicación web desarrollada con **Flask** que realiza scraping del sitio [Books to Scrape](https://books.toscrape.com/), una plataforma diseñada específicamente para practicar técnicas de extracción de datos.
 
 ## 🚀 De qué trata el proyecto
 La aplicación permite explorar un catálogo de libros extraído directamente del sitio fuente. Los usuarios pueden navegar por categorías, buscar libros específicos por título y ver detalles individuales de cada obra, todo a través de una interfaz moderna y responsiva.
 
 ## ✨ Funciones principales
-- **Scraping Dinámico**: Extrae títulos, precios, ratings e imágenes directamente de la fuente.
-- **Navegación por Categorías**: Filtra el catálogo según las categorías disponibles en el sitio original.
+- **Scraping dinámico**: Extrae títulos, precios, ratings e imágenes directamente de la fuente.
+- **Navegación por categorías**: Filtra el catálogo según las categorías disponibles en el sitio original.
 - **Búsqueda**: Permite buscar libros por palabras clave en el título.
-- **Vista de Detalles**: Información extendida de cada libro (descripción, disponibilidad, etc.).
-- **Sistema de Caché**: Implementa una caché interna para evitar peticiones redundantes y mejorar la velocidad de carga.
-- **Optimización de Scraping**: El scraper está limitado a procesar las primeras 2 páginas para garantizar tiempos de respuesta rápidos y evitar bloqueos o timeouts en despliegues cloud.
+- **Vista de detalles**: Información extendida de cada libro (descripción, disponibilidad, etc.).
+- **Sistema de caché**: Implementa una caché interna para evitar peticiones redundantes y mejorar la velocidad de carga.
+- **Optimización de scraping**: El scraper está limitado a procesar las primeras 2 páginas para garantizar tiempos de respuesta rápidos y evitar bloqueos o timeouts en despliegues cloud.
 
 ## 🛠️ Tecnologías y Librerías
 - **Backend**: [Flask](https://flask.palletsprojects.com/) (Python)
