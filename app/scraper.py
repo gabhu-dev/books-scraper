@@ -17,7 +17,7 @@ def get_categories():
         print(f'Categoría encontrada: {li.text.strip()}')
         categories.append({
             "category": li.text.strip(),
-            "url": BASE_URL_INDEX + li["href"]
+            "url": BASE_URL + li["href"]
         })
     return categories
 
@@ -69,7 +69,7 @@ def get_details(url_detail):
     soup = BeautifulSoup(response.text, "html.parser")
 
     title = soup.select_one(".product_main h1").text
-    price = soup.select_one(".price_color").text.strip()
+    price = soup.select_one(".price_color").text.replace("Â£", "$")
     availability = soup.select_one(".availability").text.strip()
     description = soup.select_one("#product_description + p")
     description = description.text.strip() if description else "Sin descripción."
