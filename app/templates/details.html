@@ -1,9 +1,51 @@
 {% extends "base.html" %}
 {% block contenido %}
-<div class="main">
-    <a class="volver" href="javascript:history.back()">← Volver</a>
-    <div class="detalle">
-        <h1>Detalles</h1>
+<div class="max-w-5xl mx-auto py-12 px-6">
+    <a href="/" class="inline-flex items-center text-sm font-medium text-gray-500 hover:text-indigo-600 mb-8 transition-colors">
+        <i data-lucide="arrow-left" class="size-4 mr-2"></i>
+        Volver a la galería
+    </a>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+        <!-- Imagen del Libro -->
+        <div class="relative group">
+            <div class="absolute -inset-1 bg-gradient-to-r from-indigo-500 to-pink-500 rounded-2xl blur opacity-15 group-hover:opacity-25 transition duration-1000 group-hover:duration-200"></div>
+            <div class="relative bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
+                <img src="{{ book.image_url }}" alt="{{ book.title }}" class="w-full h-auto object-cover rounded-lg shadow-inner">
+            </div>
+        </div>
+
+        <!-- Información -->
+        <div class="flex flex-col">
+            <div class="flex gap-1 mb-4">
+                {% for i in range(5) %}
+                    {% if i < book.rating %}
+                        <i data-lucide="star" class="size-5 text-amber-500 fill-amber-500"></i>
+                    {% else %}
+                        <i data-lucide="star" class="size-5 text-gray-300"></i>
+                    {% endif %}
+                {% endfor %}
+            </div>
+
+            <h1 class="text-3xl font-bold text-indigo-950 mb-4">{{ book.title }}</h1>
+            
+            <div class="flex items-center gap-4 mb-6">
+                <span class="text-3xl font-bold text-pink-500">{{ book.price }}</span>
+                <span class="px-3 py-1 rounded-full text-xs font-semibold {% if 'In stock' in book.availability %}bg-emerald-100 text-emerald-700{% else %}bg-red-100 text-red-700{% endif %}">
+                    {{ book.availability }}
+                </span>
+            </div>
+
+            <div class="prose prose-indigo mb-8">
+                <h3 class="text-lg font-semibold text-indigo-950 mb-2">Descripción</h3>
+                <p class="text-gray-600 leading-relaxed">{{ book.description }}</p>
+            </div>
+
+            <button class="w-full md:w-max px-8 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-xl transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2">
+                <i data-lucide="shopping-cart" class="size-5"></i>
+                Comprar ahora
+            </button>
+        </div>
     </div>
 </div>
 {% endblock %}

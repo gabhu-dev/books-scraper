@@ -23,7 +23,7 @@
     <section class="flex-1 p-6">
         <div class="grid grid-cols-1 md:grid-cols-6 gap-6">
             {% for book in books %}
-            <a class="p-4 text-center transition-all border border-white rounded-lg hover:border-gray-100 hover:shadow-md" href="{{ book.url_detail }}">
+            <a class="p-4 text-center transition-all border border-white rounded-lg hover:border-gray-100 hover:shadow-md" href="{{ url_for('main.book_details', url_detail=book.url_detail) }}">
                 <img class="mb-4 border border-gray-200 rounded-lg w-full h-[220px] object-cover" src="{{ book.image_url }}" alt="{{ book.title }}">
                 <div class="flex gap-1 mb-2">
                     {% for i in range(5) %}
