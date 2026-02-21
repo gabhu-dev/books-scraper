@@ -1,16 +1,26 @@
 {% extends "base.html" %}
 {% block contenido %}
-<div class="flex">
-    <aside class="text-sm p-4">
-        <h4 class="font-medium mb-4">Categorías</h4>
-        <ul>
-            {% for category in categories %}
-            <li class="mb-4"><a href="{{ category.url }}">{{ category.category }}</a></li>
-            {% endfor %}
-        </ul>
-    </aside>
+<div>
+    <div class="flex gap-4 mb-6 p-6 border border-gray-200 rounded-lg justify-center mx-6">
+        <!--Buscador-->
+        <input type="text" placeholder="Buscar libros..." class="p-2 px-4 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all">
+        <!--Selector de categorías-->
+        <div class="relative">
+            <select class="appearance-none py-2 pl-4 pr-10 border border-gray-200 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all cursor-pointer">
+                {% for category in categories %}
+                <option value="{{ category.url }}" class="hover:bg-indigo-100">{{ category.category }}</option>
+                {% endfor %}
+            </select>
+            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400">
+                <i data-lucide="chevron-down" class="size-4"></i>
+            </div>
+        </div>
+        <button class="p-2 px-4 bg-indigo-600 text-white flex items-center gap-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all hover:bg-indigo-500">
+            <i data-lucide="search" class="size-4"></i>
+            Buscar
+        </button>
+    </div>
     <section class="flex-1 p-6">
-        <h2 class="text-2xl font-medium mb-4">Libros</h2>
         <div class="grid grid-cols-1 md:grid-cols-6 gap-6">
             {% for book in books %}
             <a class="p-4 text-center transition-all border border-white rounded-lg hover:border-gray-100 hover:shadow-md" href="{{ book.url_detail }}">

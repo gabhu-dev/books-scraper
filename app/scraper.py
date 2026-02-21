@@ -13,7 +13,7 @@ def get_categories():
     response = requests.get(BASE_URL_INDEX)
     soup = BeautifulSoup(response.text, "html.parser")
     categories = []
-    for li in soup.select(".side_categories ul li a"):
+    for li in soup.select(".side_categories ul li ul li a"):
         print(f'Categoría encontrada: {li.text.strip()}')
         categories.append({
             "category": li.text.strip(),

@@ -7,8 +7,11 @@
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
-    <header class="p-8">
-        <a href="/" class="text-xl font-medium text-indigo-600">📚 Books Scraper</a>
+    <header class="p-8 flex items-center justify-center">
+        <!--Logo-->
+        <a href="/" class="text-xl font-medium text-indigo-600">
+            <img src="{{ url_for('static', filename='logo.svg') }}" alt="Books Scraper Logo" class="h-12">
+        </a>
     </header>
     <div class="px-8">
         {% block contenido %}{% endblock %}
