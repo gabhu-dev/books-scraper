@@ -24,7 +24,12 @@ def get_categories():
 def get_books(url=BASE_URL_INDEX, search=None):
     print(f'Obteniendo libros desde: {url}')
     books = []
-    while url:
+    page_count = 0
+    max_pages = 2
+    
+    while url and page_count < max_pages:
+        page_count += 1
+        print(f'Procesando página {page_count}...')
         response = requests.get(url)
         soup = BeautifulSoup(response.text, "html.parser")
 
