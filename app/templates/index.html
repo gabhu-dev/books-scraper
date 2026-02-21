@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 {% block contenido %}
 <div>
-    <form action="{{ url_for('main.index') }}" method="GET" class="flex gap-4 my-6 p-6 border border-gray-200 rounded-lg justify-center mx-6">
+    <form action="{{ url_for('main.index') }}" method="GET" class="flex flex-col md:flex-row gap-4 my-6 p-6 border border-gray-200 rounded-lg justify-center mx-6">
         <!--Buscador-->
         <input type="text" name="q" value="{{ request.args.get('q', '') }}" placeholder="Buscar libros..." class="p-2 px-4 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all">
         <!--Selector de categorías-->
         <div class="relative">
-            <select name="category" class="appearance-none py-2 pl-4 pr-10 border border-gray-200 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all cursor-pointer">
+            <select name="category" class="w-full appearance-none py-2 pl-4 pr-10 border border-gray-200 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all cursor-pointer">
                 <option value="">Todas las categorías</option>
                 {% for category in categories %}
                 <option value="{{ category.url }}" {% if request.args.get('category') == category.url %}selected{% endif %} class="hover:bg-indigo-100">{{ category.category }}</option>
@@ -22,7 +22,7 @@
         </button>
     </form>
     <section class="flex-1 p-6">
-        <div class="grid grid-cols-1 md:grid-cols-6 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 gap-6">
             {% for book in books %}
             <a class="p-4 text-center transition-all border border-white rounded-lg hover:border-gray-100 hover:shadow-md" href="{{ url_for('main.book_details', url_detail=book.url_detail) }}">
                 <img class="mb-4 border border-gray-200 rounded-lg w-full h-[220px] object-cover" src="{{ book.image_url }}" alt="{{ book.title }}">
